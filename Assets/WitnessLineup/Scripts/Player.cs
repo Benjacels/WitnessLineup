@@ -90,6 +90,10 @@ public class Player : CaptainsMessPlayer {
 		_laughButton = GameObject.FindWithTag("LaughButton").GetComponent<Button>();
 		_walkButton = GameObject.FindWithTag("WalkButton").GetComponent<Button>();
 
+		_talkButton.onClick.AddListener(TalkButtonPressed);
+		_laughButton.onClick.AddListener(LaughButtonPressed);
+		_walkButton.onClick.AddListener(WalkButtonPressed);
+
 		if(_playerType == PlayerTypeEnum.Officer)
 		{
 			
@@ -98,6 +102,21 @@ public class Player : CaptainsMessPlayer {
 		{
 			
 		}
+	}
+
+	private void TalkButtonPressed()
+	{
+		
+	}
+
+	private void LaughButtonPressed()
+	{
+
+	}
+
+	private void WalkButtonPressed()
+	{
+
 	}
 
 	void OnGUI()
