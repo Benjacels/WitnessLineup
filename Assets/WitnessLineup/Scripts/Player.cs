@@ -3,15 +3,31 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+public enum PlayerTypeEnum
+{
+	Officer,
+	Witness
+}
+
 public class Player : CaptainsMessPlayer {
 
 	public Image PlayerImage;
 	public Text NameField;
 	public Text ReadyField;
 
+	PlayerTypeEnum _playerType;
+
 	public override void OnStartLocalPlayer()
 	{
 		base.OnStartLocalPlayer();
+
+		if (playerIndex == 0)
+			_playerType = PlayerTypeEnum.Officer;
+		else
+		{
+			Camera.main.orthographicSize /= 5;
+			_playerType = PlayerTypeEnum.Witness;
+		}
 	}
 
 	public override void OnClientEnterLobby()
@@ -55,6 +71,24 @@ public class Player : CaptainsMessPlayer {
 	public void RpcOnStartedGame()
 	{
 		ReadyField.gameObject.SetActive(false);
+		Invoke("SetupGame", 0.5f);
+	}
+
+	private void SetupGame()
+	{
+		Transform soundButtonTran = GameObject.FindWithTag("SoundButtons").transform;
+
+		foreach (Transform tran in soundButtonTran)
+			tran.gameObject.SetActive(true);
+
+		if(_playerType == PlayerTypeEnum.Officer)
+		{
+			
+		}
+		else if(_playerType == PlayerTypeEnum.Witness)
+		{
+			
+		}
 	}
 
 	void OnGUI()
