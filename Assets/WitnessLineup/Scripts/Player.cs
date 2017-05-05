@@ -15,6 +15,11 @@ public class Player : CaptainsMessPlayer {
 	public Text NameField;
 	public Text ReadyField;
 
+	private GameObject _soundButtonsParent;
+	private Button _talkButton;
+	private Button _laughButton;
+	private Button _walkButton;
+
 	PlayerTypeEnum _playerType;
 
 	public override void OnStartLocalPlayer()
@@ -76,10 +81,14 @@ public class Player : CaptainsMessPlayer {
 
 	private void SetupGame()
 	{
-		Transform soundButtonTran = GameObject.FindWithTag("SoundButtons").transform;
+		_soundButtonsParent = GameObject.FindWithTag("SoundButtons");
 
-		foreach (Transform tran in soundButtonTran)
-			tran.gameObject.SetActive(true);
+		foreach (Transform buttonTran in _soundButtonsParent.transform)
+			buttonTran.gameObject.SetActive(true);
+
+		_talkButton = GameObject.FindWithTag("TalkButton").GetComponent<Button>();
+		_laughButton = GameObject.FindWithTag("LaughButton").GetComponent<Button>();
+		_walkButton = GameObject.FindWithTag("WalkButton").GetComponent<Button>();
 
 		if(_playerType == PlayerTypeEnum.Officer)
 		{
