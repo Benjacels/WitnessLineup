@@ -15,6 +15,9 @@ public class Player : CaptainsMessPlayer {
 	public Text NameField;
 	public Text ReadyField;
 
+	private int _suspectIndex;
+	private int _suspectCount = 5;
+
 	private GameObject _soundButtonsParent;
 	private Button _talkButton;
 	private Button _laughButton;
@@ -81,6 +84,15 @@ public class Player : CaptainsMessPlayer {
 
 	private void SetupGame()
 	{
+		if(_playerType == PlayerTypeEnum.Officer)
+		{
+			
+		}
+		else if(_playerType == PlayerTypeEnum.Witness)
+		{
+			
+		}
+
 		_soundButtonsParent = GameObject.FindWithTag("SoundButtons");
 
 		foreach (Transform buttonTran in _soundButtonsParent.transform)
@@ -93,15 +105,6 @@ public class Player : CaptainsMessPlayer {
 		_talkButton.onClick.AddListener(TalkButtonPressed);
 		_laughButton.onClick.AddListener(LaughButtonPressed);
 		_walkButton.onClick.AddListener(WalkButtonPressed);
-
-		if(_playerType == PlayerTypeEnum.Officer)
-		{
-			
-		}
-		else if(_playerType == PlayerTypeEnum.Witness)
-		{
-			
-		}
 	}
 
 	private void TalkButtonPressed()
